@@ -45,3 +45,15 @@ jobs:
       - name: Build and push Docker image for FRONT
         run: |
           docker buildx build --build-arg REACT_APP_CALLBACK="${{ secrets.REACT_APP_CALLBACK }}" \--build-arg REACT_APP_CLIENT_ID="${{ secrets.REACT_APP_CLIENT_ID }}" \-t ${{ secrets.AZURE_REGISTRY_SERVER }}/front:release -f Dockerfile --push .
+
+      - name: Configure kubectl
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+      - name: Kubernetes manifests on develop
+        if: github.ref == 'refs/heads/release'
+        run: |
+          kubectl apply -f manifiest/release-namespace.yaml
+          kubectl apply -f manifiest/release-deployment.yaml
+          kubectl apply -f manifiest/release-services.yaml
