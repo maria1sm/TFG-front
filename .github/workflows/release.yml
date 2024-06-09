@@ -44,4 +44,4 @@ jobs:
 
       - name: Build and push Docker image for FRONT
         run: |
-          docker buildx build --build-arg REACT_APP_CALLBACK="${{ secrets.REACT_APP_CALLBACK }}" \--build-arg REACT_APP_CLIENT_ID="${{ secrets.REACT_APP_CLIENT_ID }}" \-t ${{ secrets.AZURE_REGISTRY_SERVER }}/core:release -f Dockerfile --push .
+          docker buildx build --build-arg REACT_APP_CALLBACK="${{ secrets.REACT_APP_CALLBACK }}" \--build-arg REACT_APP_CLIENT_ID="${{ secrets.REACT_APP_CLIENT_ID }}" \-t ${{ secrets.AZURE_REGISTRY_SERVER }}/front:release -f Dockerfile --push .
