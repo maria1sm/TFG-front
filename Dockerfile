@@ -13,6 +13,12 @@ RUN npm install
 # Copy all files from the current directory to the container
 COPY . .
 
+ARG REACT_APP_CALLBACK
+ARG REACT_APP_CLIENT_ID
+
+ENV REACT_APP_CALLBACK $REACT_APP_CALLBACK
+ENV REACT_APP_CLIENT_ID $REACT_APP_CLIENT_ID
+
 # Build the React app
 RUN npm run build
 

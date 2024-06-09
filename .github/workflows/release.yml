@@ -1,0 +1,47 @@
+name: Build and Deploy API Core Release
+
+on:
+  push:
+    branches: ['release']
+  pull_request:
+    branches: ['release']
+  workflow_dispatch:  # Permitir ejecución manual
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+      SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+
+    steps:
+
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+
+      - name: Print repository status
+        run: git log -1
+
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+
+      - name: Log in to Docker Hub
+        uses: azure/docker-login@v1
+        with:
+          login-server: registrytfg.azurecr.io
+          username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+          password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+
+
+      - name: Build and push Docker image for FRONT
+        run: |
+          docker buildx build --build-arg REACT_APP_CALLBACK="${{ secrets.REACT_APP_CALLBACK }}" \--build-arg REACT_APP_CLIENT_ID="${{ secrets.REACT_APP_CLIENT_ID }}" \-t ${{ secrets.AZURE_REGISTRY_SERVER }}/core:release -f Dockerfile --push .
