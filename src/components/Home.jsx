@@ -1,46 +1,29 @@
 // components/Home.jsx
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../AppContext';
 import UserProfile from './Profile';
 import Search from './Search';
+import SearchComponent from './SearchComponent';
+import Navbar from './Navbar';
+
 
 const Home = () => {
-    const { setIsLoggedIn } = useContext(AppContext);
+    /*const { setIsLoggedIn } = useContext(AppContext);
 
     const handleLogout = () => {
         localStorage.removeItem('spotifyAccessToken');
+        sessionStorage.removeItem('recommendation_playlist');
         setIsLoggedIn(false);
-    };
+    };*/
+    const [showModal, setShowModal] = useState(false);
 
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
     return (
-        <div>
-            <h1>Home</h1>
-            <button onClick={handleLogout}>Logout</button>
-            {<UserProfile></UserProfile>}
-            {<Search></Search>}
+        <div className="d-flex flex-column main-content mb-5">
+            <SearchComponent />
         </div>
     );
 };
 
 export default Home;
-
-
-
-// Home.js
-/*import React from 'react';
-
-const Home = () => {
-    const handleLogout = () => {
-        localStorage.removeItem('spotifyAccessToken');
-        //window.location.href = '/';
-    };
-
-    return (
-        <div>
-            <h1>Home</h1>
-            <button onClick={handleLogout}>Logout</button>
-        </div>
-    );
-};
-
-export default Home;*/
