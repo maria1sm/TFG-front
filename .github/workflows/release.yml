@@ -54,6 +54,8 @@ jobs:
       - name: Kubernetes manifests on develop
         if: github.ref == 'refs/heads/release'
         run: |
+          TIMESTAMP=$(date +%s)
           kubectl apply -f manifest/release-namespace.yml
-          kubectl apply -f manifest/release-deployment.yml
           kubectl apply -f manifest/release-services.yml
+          kubectl annotate deployment deployment-release kubernetes.io/change-cause="Re-deployed at $TIMESTAMP" --overwrite -n release
+          kubectl apply -f manifest/release-deployment.yml
