@@ -236,7 +236,7 @@ const SearchComponent = () => {
                         <SearchBar
                             query={query}
                             handleInputChange={handleInputChange}
-                            handleKeyDown={handleKeyDown}
+                            onKeyDown={handleKeyDown}
                             handleSearch={handleSearch}
                             handleCancelSearch={handleCancelSearch}
                             toggleSearchType={toggleSearchType}
