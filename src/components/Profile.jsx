@@ -41,6 +41,7 @@ const UserProfile = () => {
 
     const handleLogout = () => {
         setIsLoggedIn(false);
+        setUserProfile(false);
         sessionStorage.removeItem('recommendation_playlist');
         sessionStorage.removeItem('selectedArtists')
         sessionStorage.removeItem('selectedTracks')
