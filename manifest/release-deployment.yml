@@ -22,6 +22,7 @@ spec:
             - containerPort: 8080
         - name: front
           image: registrytfg.azurecr.io/front:release
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
         - name: dbapi
