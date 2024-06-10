@@ -96,7 +96,7 @@ ul {
 
 .bg-gradient-spotify {
   background: linear-gradient(to bottom right, var(--spotify-green), #066526 89%);
-  /* Adjust colors */
+  /* Adjust colors doc */
 }
 
 .bg-success {
