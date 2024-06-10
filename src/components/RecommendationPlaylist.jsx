@@ -14,6 +14,12 @@ const RecommendationPlaylist = ({ recommendationPlaylist, playlistName, setPlayl
         return () => clearTimeout(timer);
     }, []);
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSavePlaylist();
+        }
+    };
+
     return (
         <div className='d-flex flex-column align-items-center'>
             <div className='d-flex flex-column align-items-center'>
@@ -23,6 +29,7 @@ const RecommendationPlaylist = ({ recommendationPlaylist, playlistName, setPlayl
                     placeholder="Enter playlist name"
                     value={playlistName}
                     onChange={(e) => setPlaylistName(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
             </div>
             {saveError && <p style={{ color: 'red' }}>{saveError}</p>}

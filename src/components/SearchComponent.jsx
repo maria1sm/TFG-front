@@ -68,6 +68,12 @@ const SearchComponent = () => {
         setDuplicateError('');
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
     const handleSearch = async () => {
         setSearchClicked(true);
         await checkAndRefreshToken();
@@ -230,6 +236,7 @@ const SearchComponent = () => {
                         <SearchBar
                             query={query}
                             handleInputChange={handleInputChange}
+                            handleKeyDown={handleKeyDown}
                             handleSearch={handleSearch}
                             handleCancelSearch={handleCancelSearch}
                             toggleSearchType={toggleSearchType}
