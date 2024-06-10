@@ -18,6 +18,7 @@ spec:
       containers:
         - name: core
           image: registrytfg.azurecr.io/core:release
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
         - name: front
@@ -27,5 +28,6 @@ spec:
             - containerPort: 80
         - name: dbapi
           image: registrytfg.azurecr.io/dbapi:release
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
