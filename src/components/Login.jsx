@@ -42,7 +42,7 @@ const SpotifyLogin = () => {
                     <div className="rounded bg-success bg-gradient bg-success d-flex justify-content-center align-items-center p-3 song">
                         <i className="bi bi-music-note-beamed"></i>
                     </div>
-                    <h4 className="text-white mt-4">create a new playlist</h4>
+                    <h4 className="text-white mt-4">create a new playlist :)</h4>
                     <div className="text-light">1 follower <span className='fw-bold'>·</span> made for you</div>
                     <button className='recommendation-btn w-100 mt-3' onClick={handleLogin}>Login with Spotify</button>
                 </div>
